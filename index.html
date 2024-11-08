@@ -1,104 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kaday Inheritance Splitter</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kaday Inheritance Splitter</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
 
-    body, html {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #f4f4f9;
-      color: #333;
-    }
+      body,
+      html {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f4f4f9;
+        color: #333;
+      }
 
-    .container {
-      text-align: center;
-      padding: 20px;
-      width: 100%;
-      max-width: 400px;
-    }
+      .container {
+        text-align: center;
+        padding: 1.25rem;
+        width: 100%;
+        max-width: 25rem;
+      }
 
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.625rem;
+      }
 
-    h1 img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
+      h1 img {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background-color: #8b5e3c;
+        padding: 0.3125rem;
+      }
 
-    .input-container {
-      margin-top: 20px;
-    }
+      .input-container {
+        margin-top: 1.25rem;
+      }
 
-    input[type="number"] {
-      width: 100%;
-      padding: 15px;
-      font-size: 1.2em;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+      input[type="number"] {
+        width: 100%;
+        padding: 0.9375rem;
+        font-size: 1.2rem;
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+        margin-bottom: 1.25rem;
+        text-align: center;
+      }
 
-    .results {
-      font-size: 1.1em;
-      line-height: 1.5;
-    }
+      .results {
+        font-size: 1.1rem;
+        line-height: 1.5;
+      }
 
-    .result {
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>
-      <img src="./kaday.jpg" alt="محمد عثمان إبراهيم">
-      حساب نصيب ورثة كاداي (رحمه الله)
-    </h1>
+      .result {
+        margin-top: 0.625rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <img src="./kaday.jpg" alt="محمد عثمان إبراهيم" />
+        حساب نصيب ورثة كاداي (رحمه الله)
+      </h1>
 
-    <div class="input-container">
-      <input type="number" id="total-amount" placeholder="أدخل إجمالي المبلغ بالجنيه" oninput="calculateShares()" />
+      <div class="input-container">
+        <input
+          type="number"
+          id="total-amount"
+          placeholder="أدخل إجمالي المبلغ بالجنيه"
+          oninput="calculateShares()"
+        />
+      </div>
+
+      <div class="results">
+        <div class="result" id="hawshiyah-share">نصيب حوشية = 0</div>
+        <div class="result" id="daughter-share">نصيب البنت الواحدة = 0</div>
+        <div class="result" id="son-share">نصيب الرجل الواحد = 0</div>
+      </div>
     </div>
 
-    <div class="results">
-      <div class="result" id="hawshiyah-share">نصيب حوشية = 0</div>
-      <div class="result" id="daughter-share">نصيب البنت الواحدة = 0</div>
-      <div class="result" id="son-share">نصيب الرجل = 0</div>
-    </div>
-  </div>
+    <script>
+      function calculateShares() {
+        const total =
+          parseFloat(document.getElementById("total-amount").value) || 0;
 
-  <script>
-    function calculateShares() {
-      const total = parseFloat(document.getElementById("total-amount").value) || 0;
-      
-      // Calculate shares
-      const hawshiyahShare = (total / 8).toFixed(2);
-      const daughterShare = ((7 / 128) * total).toFixed(2);
-      const sonShare = ((7 / 64) * total).toFixed(2);
+        // Calculate shares
+        const hawshiyahShare = (total / 8).toFixed(2);
+        const daughterShare = ((7 / 128) * total).toFixed(2);
+        const sonShare = ((7 / 64) * total).toFixed(2);
 
-      // Display results
-      document.getElementById("hawshiyah-share").textContent = `نصيب حوشية = ${hawshiyahShare}`;
-      document.getElementById("daughter-share").textContent = `نصيب البنت الواحدة = ${daughterShare}`;
-      document.getElementById("son-share").textContent = `نصيب الرجل = ${sonShare}`;
-    }
-  </script>
-</body>
+        // Display results
+        document.getElementById(
+          "hawshiyah-share"
+        ).textContent = `نصيب حوشية = ${hawshiyahShare}`;
+        document.getElementById(
+          "daughter-share"
+        ).textContent = `نصيب البنت الواحدة = ${daughterShare}`;
+        document.getElementById(
+          "son-share"
+        ).textContent = `نصيب الرجل = ${sonShare}`;
+      }
+    </script>
+  </body>
 </html>
